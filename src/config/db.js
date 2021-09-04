@@ -1,12 +1,14 @@
-import { connect } from "mongoose";
+import mongoose from 'mongoose';
+import { config } from "dotenv";
+config();
 (async () => {
     try {
-        const db = await connect(process.env.MONGO_CNN, {
+        await mongoose.connect(process.env.MONGO_CNN, {
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
         });
     } catch (error) {
-        return error;
+        console.log(error);
         process.exit(1);
     }
 })();
